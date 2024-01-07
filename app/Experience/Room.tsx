@@ -13,4 +13,4 @@ export const Room = () => {
         <primitive object={scene} />
 
     </>
-}
+}  
