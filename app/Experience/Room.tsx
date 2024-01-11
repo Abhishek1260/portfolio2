@@ -2,7 +2,7 @@
 
 import { OrbitControls, useGLTF } from "@react-three/drei"
 import { useLoader } from "@react-three/fiber"
-import { TextureLoader } from 'three/src/loaders/TextureLoader'
+import { TextureLoader } from 'three'
 import * as THREE from 'three'
 import { useEffect } from "react"
 
