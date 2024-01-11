@@ -10,7 +10,7 @@ import { useEffect } from "react"
 export const Room = () => {
 
     const { scene } = useGLTF("/portfolio.glb")
-    const colorMap = useLoader(TextureLoader, "/BakedTexture6.png")
+    const colorMap = useLoader(TextureLoader, "/BakedTexture20.png")
     colorMap.flipY = false
 
     scene.traverse((e) => {
