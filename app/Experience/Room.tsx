@@ -10,7 +10,7 @@ import { useEffect } from "react"
 export const Room = () => {
 
     const { scene } = useGLTF("/portfolio.glb")
-    const colorMap = useLoader(TextureLoader, "/BakedTexture20.png")
+    const colorMap = useLoader(TextureLoader, "/Baked1.jpg")
     colorMap.encoding = THREE.sRGBEncoding
     colorMap.flipY = false
 
@@ -27,7 +27,7 @@ export const Room = () => {
 
 
     return <>
-        <pointLight position={[-5, 5, 0]} intensity={100} color={"#ffffff"} />
+        <ambientLight intensity={100} color={"#ffffff"} />
         <OrbitControls />
         <primitive object={scene} />
 
