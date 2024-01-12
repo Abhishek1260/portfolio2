@@ -9,8 +9,8 @@ import { useEffect } from "react"
 
 export const Room = () => {
 
-    const { scene } = useGLTF("/portfolio.glb")
-    const colorMap = useLoader(TextureLoader, "/Baked1.jpg")
+    const { scene } = useGLTF("/texture1.glb")
+    const colorMap = useLoader(TextureLoader, "/Texture1.png")
     colorMap.encoding = THREE.sRGBEncoding
     colorMap.flipY = false
 
