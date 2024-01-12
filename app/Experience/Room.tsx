@@ -14,6 +14,7 @@ export const Room = () => {
     useFrame(({ camera }) => {
 
         camera.position.set(-15, 13, 15)
+        camera.lookAt(0, 0, 0)
 
     })
 
