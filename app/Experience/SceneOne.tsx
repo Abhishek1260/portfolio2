@@ -8,7 +8,7 @@ import * as THREE from 'three'
 export const SceneOne = () => {
 
     const { scene } = useGLTF("/texture1.glb")
-    const colorMap = useLoader(TextureLoader, "/Texture1.png")
+    const colorMap = useLoader(TextureLoader, "/Texture1.jpg")
     colorMap.encoding = THREE.sRGBEncoding
     colorMap.flipY = false
 
