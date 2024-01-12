@@ -7,8 +7,10 @@ import { SceneTwo } from "./SceneTwo"
 import { SceneThree } from "./SceneThree"
 import { useThree } from "@react-three/fiber"
 import { Group, Object3DEventMap } from "three"
+import { useControls } from "leva"
 
 export const Room = () => {
+
 
     const { camera } = useThree()
 
@@ -24,6 +26,8 @@ export const Room = () => {
         camera.position.set(-15, 13, 15)
         camera.lookAt(0, 0, 0)
     }, [])
+
+
 
 
     return <>
