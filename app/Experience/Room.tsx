@@ -89,7 +89,7 @@ export const Room = () => {
         } else if (hour >= 14 && hour < 22) {
             setTime("Day")
         } else {
-            setTime("Nights")
+            setTime("Night")
         }
         if (window.innerWidth < 720) {
             sphere.radius = 50
