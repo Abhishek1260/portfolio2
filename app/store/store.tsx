@@ -8,6 +8,7 @@ export const useStore = create((set) => ({
         z: 0
     },
     zoomed: false,
+    domnain: "",
     goBack: false,
     setLookAt: (x: number, y: number, z: number) => set((state: any) => ({ lookAt: { x, y, z } })),
     toggleZoom: (to: boolean) => set((state: any) => ({ zoomed: to })),
@@ -17,6 +18,7 @@ export const useStore = create((set) => ({
         y: 0,
         z: 0,
     },
-    setCameraPos: (x: number, y: number, z: number) => set((state: any) => ({ cameraPos: { x, y, z } }))
+    setCameraPos: (x: number, y: number, z: number) => set((state: any) => ({ cameraPos: { x, y, z } })),
+    setDomain: (domain: string) => set((state: any) => ({ domain: domain }))
 }
 ))

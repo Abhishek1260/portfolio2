@@ -11,6 +11,7 @@ import { Group, Object3DEventMap } from "three"
 import { Float, Sky, Sparkles, Stars } from "@react-three/drei"
 import { useStore } from "../store/store"
 import gsap from 'gsap'
+import { SceneFive } from "./SceneFive"
 
 
 export const Room = () => {
@@ -156,6 +157,9 @@ export const Room = () => {
             </Suspense>
             <Suspense>
                 <SceneThree time={time} />
+            </Suspense>
+            <Suspense>
+                <SceneFive time={time} />
             </Suspense>
         </group>
 

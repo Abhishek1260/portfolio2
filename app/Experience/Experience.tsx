@@ -9,7 +9,7 @@ import { closeSVG } from "../constants/icons"
 
 export const Experience = () => {
 
-    const { zoomed, setGoBack } = useStore((state: any) => ({ zoomed: state.zoomed, setGoBack: state.setGoBack }))
+    const { zoomed, setGoBack, domain } = useStore((state: any) => ({ zoomed: state.zoomed, setGoBack: state.setGoBack, domain: state.domain }))
 
     return <>
 
@@ -31,7 +31,7 @@ export const Experience = () => {
                             {closeSVG}
                         </span>
                     </button>
-                    <iframe className="w-full h-full" src="https://portfolio-six-omega-17.vercel.app" />
+                    <iframe className="w-full h-full" src={`https://portfolio-six-omega-17.vercel.app/${domain}`} />
                 </div>
             </div >
                 : null

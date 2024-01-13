@@ -36,7 +36,7 @@ export const SceneTwo = ({ time }: { time: string }) => {
         }
     })
 
-    const { setLookAt, toggleZoom, zoomed, setCameraPos } = useStore((state: any) => ({ setLookAt: state.setLookAt, toggleZoom: state.toggleZoom, zoomed: state.zoomed, setCameraPos: state.setCameraPos }))
+    const { setLookAt, toggleZoom, zoomed, setCameraPos, setDomain } = useStore((state: any) => ({ setDomain: state.setDomain, setLookAt: state.setLookAt, toggleZoom: state.toggleZoom, zoomed: state.zoomed, setCameraPos: state.setCameraPos }))
 
 
     return <>
@@ -46,6 +46,12 @@ export const SceneTwo = ({ time }: { time: string }) => {
             if (e.object.name === "Cube947" || e.object.name == "Cube951") {
                 if (zoomed) {
                     return
+                }
+                if (e.object.name === "Cube947") {
+                    setDomain("skills")
+                }
+                if (e.object.name === "Cube951") {
+                    setDomain("project")
                 }
                 setCameraPos(camera.position.x, camera.position.y, camera.position.z)
                 setLookAt(e.object.position.x, e.object.position.y, e.object.position.z)

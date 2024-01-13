@@ -42,7 +42,7 @@ export const SceneFour = ({ time }: { time: string }) => {
 
     const htmlRef = useRef<HTMLDivElement>(null)
 
-    const { setLookAt, toggleZoom, zoomed, setCameraPos } = useStore((state: any) => ({ setLookAt: state.setLookAt, toggleZoom: state.toggleZoom, zoomed: state.zoomed, setCameraPos: state.setCameraPos }))
+    const { setLookAt, toggleZoom, zoomed, setCameraPos, setDomain } = useStore((state: any) => ({ setDomain: state.setDomain, setLookAt: state.setLookAt, toggleZoom: state.toggleZoom, zoomed: state.zoomed, setCameraPos: state.setCameraPos }))
 
 
     return <>
@@ -52,6 +52,7 @@ export const SceneFour = ({ time }: { time: string }) => {
                 if (zoomed) {
                     return
                 }
+                setDomain("contact")
                 setCameraPos(camera.position.x, camera.position.y, camera.position.z)
                 setLookAt(e.object.position.x, e.object.position.y, e.object.position.z)
                 gsap.to(camera.position, { x: e.object.position.x, y: e.object.position.y, z: e.object.position.z, duration: 1, ease: "circ.in" }).eventCallback("onComplete", () => { toggleZoom(true) })
