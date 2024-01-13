@@ -7,7 +7,7 @@ import { Suspense } from "react"
 export const Experience = () => {
     return <>
 
-        <Canvas >
+        <Canvas camera={{ fov: 30 }} >
 
             <Suspense>
                 <Room />
