@@ -14,7 +14,7 @@ import { Float, Sky, Sparkles, Stars } from "@react-three/drei"
 export const Room = () => {
 
     const [sphere, setShpere] = useState(new THREE.Spherical(40, - Math.PI / 3, 3 * Math.PI / 4))
-
+    const [radius, setRadius] = useState(40)
 
     const { camera } = useThree()
 
@@ -34,7 +34,7 @@ export const Room = () => {
         const normalX = (e.clientX / window.innerWidth - 0.5) * 2
         const normalY = -1 * (e.clientY / window.innerHeight - 0.5) * 2
         sphere.theta = normalX * Math.PI / 8 + 3 * Math.PI / 4
-        sphere.radius = normalY * 3 + 40
+        sphere.radius = normalY * 3 + radius
         const position = new THREE.Vector3().setFromSpherical(sphere)
         camera.position.set(position.x, position.y, position.z)
         camera.lookAt(0, 2, 0)
@@ -42,11 +42,44 @@ export const Room = () => {
 
     window.addEventListener("mousedown", mouseDownHandler)
 
+    const touchMove = (e: TouchEvent) => {
+        const normalX = (e.touches[0].clientX / window.innerWidth - 0.5) * 2
+        const normalY = -1 * (e.touches[0].clientY / window.innerHeight - 0.5) * 2
+        sphere.theta = normalX * Math.PI / 8 + 3 * Math.PI / 4
+        sphere.radius = normalY * 3 + radius
+        const position = new THREE.Vector3().setFromSpherical(sphere)
+        camera.position.set(position.x, position.y, position.z)
+        camera.lookAt(0, 2, 0)
+    }
+
+    const touchEnd = () => {
+        window.removeEventListener("touchmove", touchMove)
+        window.removeEventListener("touchcancel", touchEnd)
+    }
+
+    const touchStart = () => {
+        window.addEventListener("touchmove", touchMove)
+        window.addEventListener("touchcancel", touchEnd)
+    }
+
+    window.addEventListener("touchstart", touchStart)
+
     useEffect(() => {
+        if (window.innerWidth < 720) {
+            sphere.radius = 50
+            setRadius(50)
+        }
         const position = new THREE.Vector3().setFromSpherical(sphere)
         camera.position.set(position.x, position.y, position.z)
         camera.lookAt(0, 2, 0)
     }, [])
+
+    useEffect(() => {
+        if (meshRef == undefined || meshRef.current == undefined) return
+        if (window.innerWidth < 720) {
+            meshRef.current.scale.set(0.5, 0.5, 0.5)
+        }
+    }, [meshRef])
 
 
 
