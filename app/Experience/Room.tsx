@@ -143,7 +143,9 @@ export const Room = () => {
 
     return <>
         {
-            time == "Night" ? <Stars /> : <Sky />
+            time == "Night" ? <Float>
+                <Stars />
+            </Float> : <Sky />
         }
         <group ref={meshRef}>
             <Suspense>

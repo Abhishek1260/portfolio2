@@ -6,6 +6,7 @@ import { Suspense } from "react"
 import { useStore } from "../store/store"
 import { div } from "three/examples/jsm/nodes/Nodes.js"
 import { closeSVG } from "../constants/icons"
+import { AboutMe } from "./AboutMe"
 
 export const Experience = () => {
 
@@ -18,6 +19,8 @@ export const Experience = () => {
             <Suspense >
                 <Room />
             </Suspense>
+
+            <AboutMe />
 
         </Canvas>
 
