@@ -6,10 +6,12 @@ import { SceneFour } from "./SceneFour"
 import * as THREE from 'three'
 import { SceneTwo } from "./SceneTwo"
 import { SceneThree } from "./SceneThree"
-import { useThree } from "@react-three/fiber"
+import { useFrame, useThree } from "@react-three/fiber"
 import { Group, Object3DEventMap } from "three"
 import { Float, Sky, Sparkles, Stars } from "@react-three/drei"
-import { useControls } from "leva"
+import { useStore } from "../store/store"
+import gsap from 'gsap'
+
 
 export const Room = () => {
 
@@ -20,7 +22,21 @@ export const Room = () => {
 
     const { camera } = useThree()
 
+    const { lookAt, setLookAt, zoomed, toggleZoom, goBack, setGoBack, cameraPos, setCameraPos } = useStore((state: any) => {
+        return { lookAt: state.lookAt, setLookAt: state.setLookAt, zoomed: state.zoomed, toggleZoom: state.toggleZoom, goBack: state.goBack, setGoBack: state.setGoBack, cameraPos: state.cameraPos, setCameraPos: state.setCameraPos }
+    })
+
     const meshRef = useRef<Group<Object3DEventMap>>(null)
+
+    useEffect(() => {
+        setGoBack(false)
+        setLookAt(0, 2, 0)
+        if (zoomed) {
+            toggleZoom(false)
+            gsap.to(camera.position, { x: cameraPos.x, y: cameraPos.y, z: cameraPos.z, duration: 0.5, ease: "circ.in" })
+
+        }
+    }, [goBack])
 
     const mouseDownHandler = () => {
         window.removeEventListener("mousemove", mouseMoveGenericFunction)
@@ -35,25 +51,33 @@ export const Room = () => {
     }
 
     const mouseMoveHandler = (e: MouseEvent) => {
+        if (zoomed) {
+            setLookAt(0, 2, 0)
+            toggleZoom(false)
+        }
         const normalX = (e.clientX / window.innerWidth - 0.5) * 2
         const normalY = -1 * (e.clientY / window.innerHeight - 0.5) * 2
         sphere.theta = normalX * Math.PI / 8 + 3 * Math.PI / 4
         sphere.radius = normalY * 3 + radius
         const position = new THREE.Vector3().setFromSpherical(sphere)
         camera.position.set(position.x, position.y, position.z)
-        camera.lookAt(0, 2, 0)
+        camera.lookAt(lookAt.x, lookAt.y, lookAt.z)
     }
 
     window.addEventListener("mousedown", mouseDownHandler)
 
     const touchMove = (e: TouchEvent) => {
+        if (zoomed) {
+            setLookAt(0, 2, 0)
+            toggleZoom(false)
+        }
         const normalX = (e.touches[0].clientX / window.innerWidth - 0.5) * 2
         const normalY = -1 * (e.touches[0].clientY / window.innerHeight - 0.5) * 2
         sphere.theta = normalX * Math.PI / 8 + 3 * Math.PI / 4
         sphere.radius = normalY * 3 + radius
         const position = new THREE.Vector3().setFromSpherical(sphere)
         camera.position.set(position.x, position.y, position.z)
-        camera.lookAt(0, 2, 0)
+        camera.lookAt(lookAt.x, lookAt.y, lookAt.z)
     }
 
     const mouseMoveGenericFunction = (e: MouseEvent) => {
@@ -79,6 +103,11 @@ export const Room = () => {
 
     window.addEventListener("touchstart", touchStart)
 
+    useFrame(() => {
+        camera.lookAt(lookAt.x, lookAt.y, lookAt.z)
+
+    })
+
 
 
     useEffect(() => {
@@ -97,6 +126,7 @@ export const Room = () => {
         }
         const position = new THREE.Vector3().setFromSpherical(sphere)
         camera.position.set(position.x, position.y, position.z)
+        setCameraPos(position.x, position.y, position.z)
         camera.lookAt(0, 2, 0)
     }, [])
 

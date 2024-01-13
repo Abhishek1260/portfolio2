@@ -1,11 +1,13 @@
 "use client"
 
 import { useGLTF } from "@react-three/drei"
-import { useLoader, useThree } from "@react-three/fiber"
+import { useFrame, useLoader, useThree } from "@react-three/fiber"
 import { Html } from "@react-three/drei"
 import { TextureLoader } from 'three'
 import * as THREE from 'three'
 import { useRef, useState } from "react"
+import gsap from "gsap"
+import { useStore } from "../store/store"
 
 interface Pos {
     x: number
@@ -40,33 +42,23 @@ export const SceneFour = ({ time }: { time: string }) => {
 
     const htmlRef = useRef<HTMLDivElement>(null)
 
-    const [object, setObject] = useState<THREE.Object3D>()
+    const { setLookAt, toggleZoom, zoomed, setCameraPos } = useStore((state: any) => ({ setLookAt: state.setLookAt, toggleZoom: state.toggleZoom, zoomed: state.zoomed, setCameraPos: state.setCameraPos }))
+
 
     return <>
 
         <primitive object={scene} onClick={(e: any) => {
-            if (window.innerWidth < 720 || htmlRef == null || htmlRef.current == null || htmlRef != undefined) {
-                return
-            }
             if (e.object.name === "Plane011") {
-
-                camera.position.set(e.object.position.x - 10, e.object.position.y, e.object.position.z)
-                camera.lookAt(e.object.position.x, e.object.position.y, e.object.position.z)
-                const box = new THREE.Box3()
-                box.expandByObject(e.object)
-                const size = box.getSize(new THREE.Vector3())
-                setObject(e.object)
-
-
+                if (zoomed) {
+                    return
+                }
+                setCameraPos(camera.position.x, camera.position.y, camera.position.z)
+                setLookAt(e.object.position.x, e.object.position.y, e.object.position.z)
+                gsap.to(camera.position, { x: e.object.position.x - 0.5, y: e.object.position.y, z: e.object.position.z, duration: 1, ease: "circ.in" }).eventCallback("onComplete", () => { toggleZoom(true) })
             }
         }} />
 
 
-        {
-            object ? <Html ref={htmlRef} >
-                <iframe src="https://portfolio-six-omega-17.vercel.app" width="200px" height={"200px"} />
-            </Html> : null
-        }
 
 
     </>
