@@ -76,7 +76,9 @@ export const SceneTwo = ({ time }: { time: string }) => {
     return <>
 
         <primitive object={scene} onClick={(e: any) => {
-            console.log(e.object.name)
+            if (window.innerWidth < 720) {
+                return
+            }
             if (e.object.name === "Cube947" || e.object.name == "Cube951") {
                 console.log(e.object.position)
                 camera.position.set(e.object.position.x, e.object.position.y, e.object.position.z + 5)

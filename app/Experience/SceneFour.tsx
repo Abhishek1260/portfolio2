@@ -24,13 +24,16 @@ export const SceneFour = ({ time }: { time: string }) => {
     return <>
 
         <primitive object={scene} onClick={(e: any) => {
+            if (window.innerWidth < 720) {
+                return
+            }
             if (e.object.name === "Plane011") {
                 camera.position.set(e.object.position.x - 10, e.object.position.y, e.object.position.z)
                 camera.lookAt(e.object.position.x, e.object.position.y, e.object.position.z)
             }
         }} />
 
-        
+
 
     </>
 
