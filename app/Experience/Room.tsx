@@ -8,6 +8,7 @@ import { SceneThree } from "./SceneThree"
 import { useThree } from "@react-three/fiber"
 import { Group, Object3DEventMap } from "three"
 import { useControls } from "leva"
+import { Float, Sky, Sparkles, Stars } from "@react-three/drei"
 
 export const Room = () => {
 
@@ -31,7 +32,7 @@ export const Room = () => {
 
 
     return <>
-        <ambientLight intensity={100} color={"#ffffff"} />
+        <Sky />
         <group ref={meshRef}>
             <Suspense>
                 <SceneOne />
@@ -42,7 +43,6 @@ export const Room = () => {
             <Suspense>
                 <SceneTwo />
             </Suspense>
-
             <Suspense>
                 <SceneThree />
             </Suspense>
