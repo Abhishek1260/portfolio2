@@ -66,11 +66,13 @@ export const Room = () => {
     const touchEnd = () => {
         window.removeEventListener("touchmove", touchMove)
         window.removeEventListener("touchcancel", touchEnd)
+        window.addEventListener("mousemove", mouseMoveGenericFunction)
     }
 
     const touchStart = () => {
         window.addEventListener("touchmove", touchMove)
         window.addEventListener("touchcancel", touchEnd)
+        window.removeEventListener("mousemove", mouseMoveGenericFunction)
     }
 
     window.addEventListener("touchstart", touchStart)
