@@ -16,14 +16,6 @@ export const Room = () => {
     const [sphere, setShpere] = useState(new THREE.Spherical(40, - Math.PI / 3, 3 * Math.PI / 4))
     const [radius, setRadius] = useState(40)
 
-    const { white, day, night } = useControls(
-        {
-            white: true,
-            day: false,
-            night: false
-        }
-    )
-
     const [time, setTime] = useState("White")
 
     const { camera } = useThree()
@@ -92,7 +84,13 @@ export const Room = () => {
     useEffect(() => {
         const date = new Date()
         const hour = date.getHours()
-        console.log(hour)
+        if (hour >= 6 && hour < 14) {
+            setTime("White")
+        } else if (hour >= 14 && hour < 22) {
+            setTime("Day")
+        } else {
+            setTime("Nights")
+        }
         if (window.innerWidth < 720) {
             sphere.radius = 50
             setRadius(50)
@@ -113,7 +111,9 @@ export const Room = () => {
 
 
     return <>
-        <Sky />
+        {
+            time == "Night" ? <Stars /> : <Sky />
+        }
         <group ref={meshRef}>
             <Suspense>
                 <SceneOne time={time} />
