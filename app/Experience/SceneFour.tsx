@@ -54,7 +54,7 @@ export const SceneFour = ({ time }: { time: string }) => {
                 }
                 setCameraPos(camera.position.x, camera.position.y, camera.position.z)
                 setLookAt(e.object.position.x, e.object.position.y, e.object.position.z)
-                gsap.to(camera.position, { x: e.object.position.x - 0.5, y: e.object.position.y, z: e.object.position.z, duration: 1, ease: "circ.in" }).eventCallback("onComplete", () => { toggleZoom(true) })
+                gsap.to(camera.position, { x: e.object.position.x, y: e.object.position.y, z: e.object.position.z, duration: 1, ease: "circ.in" }).eventCallback("onComplete", () => { toggleZoom(true) })
             }
         }} />
 
