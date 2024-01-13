@@ -1,8 +1,7 @@
 "use client"
 
-import { Html, useGLTF } from "@react-three/drei"
-import { useLoader } from "@react-three/fiber"
-import { useControls } from "leva"
+import { useGLTF } from "@react-three/drei"
+import { useLoader, useThree } from "@react-three/fiber"
 import { useState } from "react"
 import { TextureLoader } from 'three'
 import * as THREE from 'three'
@@ -18,10 +17,12 @@ export const SceneTwo = () => {
 
 
 
-    const { scene } = useGLTF("/texture2.glb")
+    const { scene, nodes } = useGLTF("/texture2.glb")
     const colorMap = useLoader(TextureLoader, "/Texture2.jpg")
     colorMap.encoding = THREE.sRGBEncoding
     colorMap.flipY = false
+
+    const { camera } = useThree()
 
     const [pos, setPos] = useState<Pos>()
 
@@ -49,6 +50,8 @@ export const SceneTwo = () => {
     // })
 
 
+    const { raycaster } = useThree()
+
 
     scene.traverse((e) => {
         if (e instanceof THREE.Mesh) {
@@ -68,9 +71,19 @@ export const SceneTwo = () => {
 
 
 
+
+
     return <>
 
-        <primitive object={scene} />
+        <primitive object={scene} onClick={(e: any) => {
+            console.log(e.object.name)
+            if (e.object.name === "Cube947" || e.object.name == "Cube951") {
+                console.log(e.object.position)
+                camera.position.set(e.object.position.x, e.object.position.y, e.object.position.z + 5)
+                camera.lookAt(e.object.position.x, e.object.position.y, e.object.position.z)
+                console.log(e.object)
+            }
+        }} />
 
         {/* 
         <Html position={[position.x, y, position.z]}>
