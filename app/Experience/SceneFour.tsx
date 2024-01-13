@@ -2,8 +2,10 @@
 
 import { useGLTF } from "@react-three/drei"
 import { useLoader, useThree } from "@react-three/fiber"
+import { Html } from "@react-three/drei"
 import { TextureLoader } from 'three'
 import * as THREE from 'three'
+import { useState } from "react"
 
 export const SceneFour = ({ time }: { time: string }) => {
 
@@ -19,6 +21,7 @@ export const SceneFour = ({ time }: { time: string }) => {
         }
     })
 
+    const [matrix, setMatrix] = useState<THREE.Matrix4>()
 
 
     return <>
@@ -30,9 +33,17 @@ export const SceneFour = ({ time }: { time: string }) => {
             if (e.object.name === "Plane011") {
                 camera.position.set(e.object.position.x - 10, e.object.position.y, e.object.position.z)
                 camera.lookAt(e.object.position.x, e.object.position.y, e.object.position.z)
+                setMatrix(e.object.matrixWorld)
+
             }
         }} />
 
+
+        {
+            matrix ? <Html >
+                <iframe src="https://portfolio-six-omega-17.vercel.app" />
+            </Html> : null
+        }
 
 
     </>
