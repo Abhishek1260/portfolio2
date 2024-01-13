@@ -1,12 +1,13 @@
 "use client"
 
 import { useGLTF } from "@react-three/drei"
-import { useLoader } from "@react-three/fiber"
+import { useLoader, useThree } from "@react-three/fiber"
 import { TextureLoader } from 'three'
 import * as THREE from 'three'
 
 export const SceneFour = ({ time }: { time: string }) => {
 
+    const { camera } = useThree()
     const { scene } = useGLTF("/texture4.glb")
     const colorMap = useLoader(TextureLoader, `/texture4/${time}.jpg`)
     colorMap.encoding = THREE.sRGBEncoding
@@ -22,7 +23,14 @@ export const SceneFour = ({ time }: { time: string }) => {
 
     return <>
 
-        <primitive object={scene} />
+        <primitive object={scene} onClick={(e: any) => {
+            if (e.object.name === "Plane011") {
+                camera.position.set(e.object.position.x - 10, e.object.position.y, e.object.position.z)
+                camera.lookAt(e.object.position.x, e.object.position.y, e.object.position.z)
+            }
+        }} />
+
+        
 
     </>
 

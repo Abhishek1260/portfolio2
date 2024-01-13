@@ -22,7 +22,7 @@ export const SceneThree = ({ time }: { time: string }) => {
 
     return <>
 
-        <primitive object={scene} />
+        <primitive object={scene}  />
 
     </>
 
