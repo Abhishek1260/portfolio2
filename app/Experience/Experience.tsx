@@ -9,7 +9,7 @@ export const Experience = () => {
 
         <Canvas camera={{ fov: 30 }} >
 
-            <Suspense>
+            <Suspense >
                 <Room />
             </Suspense>
 

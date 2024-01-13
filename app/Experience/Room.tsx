@@ -21,6 +21,7 @@ export const Room = () => {
     const meshRef = useRef<Group<Object3DEventMap>>(null)
 
     const mouseDownHandler = () => {
+        window.removeEventListener("mousemove", mouseMoveGenericFunction)
         window.addEventListener("mouseup", mouseUpHandler)
         window.addEventListener("mousemove", mouseMoveHandler)
     }
@@ -28,6 +29,7 @@ export const Room = () => {
     const mouseUpHandler = () => {
         window.removeEventListener("mousemove", mouseMoveHandler)
         window.removeEventListener("mouseup", mouseUpHandler)
+        window.addEventListener("mousemove", mouseMoveGenericFunction)
     }
 
     const mouseMoveHandler = (e: MouseEvent) => {
@@ -51,6 +53,15 @@ export const Room = () => {
         camera.position.set(position.x, position.y, position.z)
         camera.lookAt(0, 2, 0)
     }
+
+    const mouseMoveGenericFunction = (e: MouseEvent) => {
+        if (meshRef == undefined || meshRef.current == undefined) return
+        const normalX = (e.clientX / window.innerWidth - 0.5) * 2
+        const normalY = -1 * (e.clientY / window.innerHeight - 0.5) * 2
+        meshRef.current.position.set(-normalX * 0.5, -normalY * 0.5, meshRef.current.position.z)
+    }
+
+    window.addEventListener("mousemove", mouseMoveGenericFunction)
 
     const touchEnd = () => {
         window.removeEventListener("touchmove", touchMove)
