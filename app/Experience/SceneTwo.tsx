@@ -13,12 +13,12 @@ interface Pos {
     z: number
 }
 
-export const SceneTwo = () => {
+export const SceneTwo = ({ time }: { time: string }) => {
 
 
 
     const { scene, nodes } = useGLTF("/texture2.glb")
-    const colorMap = useLoader(TextureLoader, "/Texture2.jpg")
+    const colorMap = useLoader(TextureLoader, `/texture2/${time}.jpg`)
     colorMap.encoding = THREE.sRGBEncoding
     colorMap.flipY = false
 

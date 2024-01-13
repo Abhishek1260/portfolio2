@@ -5,10 +5,10 @@ import { useLoader } from "@react-three/fiber"
 import { TextureLoader } from 'three'
 import * as THREE from 'three'
 
-export const SceneOne = () => {
+export const SceneOne = ({ time }: { time: string }) => {
 
     const { scene } = useGLTF("/texture1.glb")
-    const colorMap = useLoader(TextureLoader, "/Texture1.jpg")
+    const colorMap = useLoader(TextureLoader, `/texture1/${time}.jpg`)
     colorMap.encoding = THREE.sRGBEncoding
     colorMap.flipY = false
 

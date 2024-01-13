@@ -8,13 +8,23 @@ import { SceneTwo } from "./SceneTwo"
 import { SceneThree } from "./SceneThree"
 import { useThree } from "@react-three/fiber"
 import { Group, Object3DEventMap } from "three"
-import { useControls } from "leva"
 import { Float, Sky, Sparkles, Stars } from "@react-three/drei"
+import { useControls } from "leva"
 
 export const Room = () => {
 
     const [sphere, setShpere] = useState(new THREE.Spherical(40, - Math.PI / 3, 3 * Math.PI / 4))
     const [radius, setRadius] = useState(40)
+
+    const { white, day, night } = useControls(
+        {
+            white: true,
+            day: false,
+            night: false
+        }
+    )
+
+    const [time, setTime] = useState("White")
 
     const { camera } = useThree()
 
@@ -77,7 +87,12 @@ export const Room = () => {
 
     window.addEventListener("touchstart", touchStart)
 
+
+
     useEffect(() => {
+        const date = new Date()
+        const hour = date.getHours()
+        console.log(hour)
         if (window.innerWidth < 720) {
             sphere.radius = 50
             setRadius(50)
@@ -101,16 +116,16 @@ export const Room = () => {
         <Sky />
         <group ref={meshRef}>
             <Suspense>
-                <SceneOne />
+                <SceneOne time={time} />
             </Suspense>
             <Suspense>
-                <SceneFour />
+                <SceneFour time={time} />
             </Suspense>
             <Suspense>
-                <SceneTwo />
+                <SceneTwo time={time} />
             </Suspense>
             <Suspense>
-                <SceneThree />
+                <SceneThree time={time} />
             </Suspense>
         </group>
 
