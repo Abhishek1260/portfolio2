@@ -28,6 +28,17 @@ export const Room = () => {
         return { removeMouseDown: state.removeMouseDown, lookAt: state.lookAt, setLookAt: state.setLookAt, zoomed: state.zoomed, toggleZoom: state.toggleZoom, goBack: state.goBack, setGoBack: state.setGoBack, cameraPos: state.cameraPos, setCameraPos: state.setCameraPos }
     })
 
+    useEffect(() => {
+        if (goBack) {
+            setGoBack(false)
+            setLookAt(0, 2, 0)
+            toggleZoom(false)
+            gsap.to(camera.position, { x: cameraPos.x, y: cameraPos.y, z: cameraPos.z, duration: 0.5, ease: "circ.in" })
+        }
+    },
+
+        [goBack])
+
     const meshRef = useRef<Group<Object3DEventMap>>(null)
 
     const mouseDownHandler = () => {
