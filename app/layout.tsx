@@ -20,9 +20,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className='w-screen h-screen '>
           <Experience />
-          <div className='-z-50 absolute top-0 left-0 w-screen h-screen'>
-            {children}
-          </div>
+          {children}
         </div>
       </body>
     </html>

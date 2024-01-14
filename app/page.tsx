@@ -58,13 +58,11 @@ export default function Page() {
 
   return <>
 
-    <div className="w-full h-full">
-      <audio autoPlay muted ref={ref}>
-        <source src="/music.mp3" type="audio/mpeg" />
-      </audio>
-      <button onClick={() => { clickHandler() }} className={`z-50 ${time == "Night" ? "border-white fill-white" : "border-black fill-black"} absolute bottom-8 right-8 border rounded-full p-4`}>
-        {muted ? audioSVG : stopSVG}
-      </button>
-    </div>
+    <audio autoPlay muted ref={ref}>
+      <source src="/music.mp3" type="audio/mpeg" />
+    </audio>
+    <button onClick={() => { clickHandler() }} className={`z-50 ${time == "Night" ? "border-white fill-white" : "border-black fill-black"} absolute bottom-8 right-8 border rounded-full p-4`}>
+      {muted ? audioSVG : stopSVG}
+    </button>
   </>
 }
