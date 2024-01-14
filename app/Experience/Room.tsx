@@ -175,11 +175,7 @@ export const Room = () => {
             </Suspense>
         </group>
 
-        <Html center >
-            <div className=" bg-red-100" >
-                Loading the text
-            </div>
-        </Html>
+
 
     </>
 }  
