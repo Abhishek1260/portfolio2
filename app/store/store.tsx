@@ -10,17 +10,17 @@ export const useStore = create((set) => ({
     zoomed: false,
     domnain: "",
     goBack: false,
-    setLookAt: (x: number, y: number, z: number) => set((state: any) => ({ lookAt: { x, y, z } })),
-    toggleZoom: (to: boolean) => set((state: any) => ({ zoomed: to })),
+    setLookAt: (x: number, y: number, z: number) => set((state: any) => ({ ...state, lookAt: { x, y, z } })),
+    toggleZoom: (to: boolean) => set((state: any) => ({ ...state, zoomed: to })),
     setGoBack: (cond: boolean) => set((state: any) => ({ goBack: cond })),
     cameraPos: {
         x: 0,
         y: 0,
         z: 0,
     },
-    setCameraPos: (x: number, y: number, z: number) => set((state: any) => ({ cameraPos: { x, y, z } })),
-    setDomain: (domain: string) => set((state: any) => ({ domain: domain })),
+    setCameraPos: (x: number, y: number, z: number) => set((state: any) => ({ ...state, cameraPos: { x, y, z } })),
+    setDomain: (domain: string) => set((state: any) => ({ ...state, domain: domain })),
     removeMouseDown: false,
-    setRemoveMouseDown: (bool: boolean) => set((state: any) => ({ removeMouseDown: bool }))
+    setRemoveMouseDown: (bool: boolean) => set((state: any) => ({ ...state, removeMouseDown: bool }))
 }
 ))
