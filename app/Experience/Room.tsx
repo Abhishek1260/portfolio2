@@ -8,7 +8,7 @@ import { SceneTwo } from "./SceneTwo"
 import { SceneThree } from "./SceneThree"
 import { useFrame, useThree } from "@react-three/fiber"
 import { Group, Object3DEventMap } from "three"
-import { Float, Html, Sky, Sparkles, Stars } from "@react-three/drei"
+import { Float, Html, OrbitControls, Sky, Sparkles, Stars } from "@react-three/drei"
 import { useStore } from "../store/store"
 import gsap from 'gsap'
 import { SceneFive } from "./SceneFive"

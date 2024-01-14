@@ -50,8 +50,13 @@ export const Loader = () => {
 
         <Html center>
             <div className="w-screen h-screen bg-slate-900 flex flex-col justify-center items-center gap-10" >
-                <div className="text-xl md:text-6xl text-white">
-                    Loading An Experience For You
+                <div className="flex flex-col gap-2 justify-center items-center">
+                    <div className="text-xl md:text-6xl text-white">
+                        Loading An Experience For You
+                    </div>
+                    <div className="text-sm text-white">
+                        Please Wait... 😀
+                    </div>
                 </div>
                 <div className="w-full h-1 bg-white" style={{ transform: `scale(${progress / 100} , 1)`, transition: "all 0.5" }} />
             </div>
