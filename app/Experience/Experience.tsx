@@ -1,12 +1,13 @@
 "use client"
 
-import { Canvas } from "@react-three/fiber"
+import { Canvas, useLoader } from "@react-three/fiber"
 import { Room } from "./Room"
 import { Suspense } from "react"
 import { useStore } from "../store/store"
 import { div } from "three/examples/jsm/nodes/Nodes.js"
 import { closeSVG } from "../constants/icons"
 import { AboutMe } from "./AboutMe"
+import { Html, useProgress } from "@react-three/drei"
 
 export const Experience = () => {
 
@@ -16,7 +17,7 @@ export const Experience = () => {
 
         <Canvas camera={{ fov: 30 }} >
 
-            <Suspense >
+            <Suspense fallback={<Loader />} >
                 <Room />
             </Suspense>
 
@@ -39,6 +40,21 @@ export const Experience = () => {
             </div >
                 : null
         }
+
+    </>
+}
+
+export const Loader = () => {
+
+    const { progress } = useProgress()
+
+    return <>
+
+        <Html center>
+            {
+                progress
+            } % loaded
+        </Html>
 
     </>
 }
