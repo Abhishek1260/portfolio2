@@ -27,8 +27,12 @@ export const AboutMe1 = ({ callback }: { callback: () => void }) => {
         <group position={[-300, 0, 0]} rotation={[0, -Math.PI / 2, 0]} >
             <primitive object={scene} onClick={(e: any) => {
                 if (e.object.name == "Plane") {
+                    let height = 65
+                    if (window.innerWidth < 720) {
+                        height = 100
+                    }
                     setLookAt(-435, 0, 0)
-                    gsap.to(camera.position, { x: -435, y: 65, z: 0, duration: 1, ease: "circ.in" })
+                    gsap.to(camera.position, { x: -435, y: height, z: 0, duration: 1, ease: "circ.in" })
                 }
                 if (e.object.name == "Plane001") {
                     setLookAt(0, 2, 0)

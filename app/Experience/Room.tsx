@@ -59,9 +59,9 @@ export const Room = () => {
 
     const touchMove = (e: TouchEvent) => {
         if (zoomed) {
-            setLookAt(0, 2, 0)
             toggleZoom(false)
         }
+        setLookAt(0, 2, 0)
         const normalX = (e.touches[0].clientX / window.innerWidth - 0.5) * 2
         const normalY = -1 * (e.touches[0].clientY / window.innerHeight - 0.5) * 2
         sphere.theta = normalX * Math.PI / 8 + 3 * Math.PI / 4
