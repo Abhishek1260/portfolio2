@@ -2,12 +2,15 @@
 
 import { useEffect, useRef, useState } from "react";
 import { audioSVG, stopSVG } from "./constants/icons";
+import { useStore } from "./store/store";
 
 export default function Page() {
 
   const [time, setTime] = useState("Day")
 
   const [muted, setMuted] = useState(true)
+
+  const { click } = useStore((state: any) => ({ click: state.click }))
 
   useEffect(() => {
     const date = new Date()
@@ -21,7 +24,8 @@ export default function Page() {
     }
   }, [])
 
-  const event = () => {
+  useEffect(() => {
+    if (!click) return
     if (ref == undefined || ref == null || ref.current == null) {
       return
     }
@@ -31,9 +35,7 @@ export default function Page() {
       ref.current.muted = false
       ref.current.volume = 0.3
     }
-  }
-
-  window.addEventListener("click", event)
+  }, [click])
 
   const clickHandler = () => {
     if (ref == undefined || ref == null || ref.current == null) {
@@ -46,7 +48,6 @@ export default function Page() {
       ref.current.volume = 0.3
     } else {
       setMuted(true)
-
       ref.current.muted = true
       ref.current.volume = 0
     }
@@ -61,7 +62,7 @@ export default function Page() {
       <audio autoPlay muted ref={ref}>
         <source src="/music.mp3" type="audio/mpeg" />
       </audio>
-      <button onClick={() => { clickHandler() }} className={`z-50 ${time == "Night" ? "fill-white border-white" : "fill-black border-black"} absolute bottom-8 right-8 border rounded-full p-4`}>
+      <button onClick={() => { clickHandler() }} className={`z-50 ${time == "Night" ? "border-white fill-white" : "border-black fill-black"} absolute bottom-8 right-8 border rounded-full p-4`}>
         {muted ? audioSVG : stopSVG}
       </button>
     </div>

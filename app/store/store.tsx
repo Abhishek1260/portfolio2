@@ -21,6 +21,8 @@ export const useStore = create((set) => ({
     setCameraPos: (x: number, y: number, z: number) => set((state: any) => ({ ...state, cameraPos: { x, y, z } })),
     setDomain: (domain: string) => set((state: any) => ({ ...state, domain: domain })),
     removeMouseDown: false,
-    setRemoveMouseDown: (bool: boolean) => set((state: any) => ({ ...state, removeMouseDown: bool }))
+    setRemoveMouseDown: (bool: boolean) => set((state: any) => ({ ...state, removeMouseDown: bool })),
+    click: false,
+    setClick: () => set((state: any) => ({ click: true }))
 }
 ))

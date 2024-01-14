@@ -24,8 +24,8 @@ export const Room = () => {
 
     const { camera } = useThree()
 
-    const { lookAt, setLookAt, zoomed, toggleZoom, goBack, setGoBack, cameraPos, setCameraPos, removeMouseDown } = useStore((state: any) => {
-        return { removeMouseDown: state.removeMouseDown, lookAt: state.lookAt, setLookAt: state.setLookAt, zoomed: state.zoomed, toggleZoom: state.toggleZoom, goBack: state.goBack, setGoBack: state.setGoBack, cameraPos: state.cameraPos, setCameraPos: state.setCameraPos }
+    const { setClick, lookAt, setLookAt, zoomed, toggleZoom, goBack, setGoBack, cameraPos, setCameraPos, removeMouseDown } = useStore((state: any) => {
+        return { setClick: state.setClick, removeMouseDown: state.removeMouseDown, lookAt: state.lookAt, setLookAt: state.setLookAt, zoomed: state.zoomed, toggleZoom: state.toggleZoom, goBack: state.goBack, setGoBack: state.setGoBack, cameraPos: state.cameraPos, setCameraPos: state.setCameraPos }
     })
 
     useEffect(() => {
@@ -42,6 +42,7 @@ export const Room = () => {
     const meshRef = useRef<Group<Object3DEventMap>>(null)
 
     const mouseDownHandler = () => {
+        setClick()
         window.removeEventListener("mousemove", mouseMoveGenericFunction)
         window.addEventListener("mouseup", mouseUpHandler)
         window.addEventListener("mousemove", mouseMoveHandler)
