@@ -4,7 +4,7 @@ import * as THREE from 'three'
 
 export const GoogleLed = () => {
 
-    const { scene } = useGLTF("/GoogleLed.glb")
+    const { scene } = useGLTF("/googleLed.glb")
 
     scene.traverse((e) => {
         if (e instanceof THREE.Mesh) {
