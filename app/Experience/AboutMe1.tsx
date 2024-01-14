@@ -28,7 +28,7 @@ export const AboutMe1 = () => {
             <primitive object={scene} onClick={(e: any) => {
                 if (e.object.name == "Plane") {
                     setLookAt(-435, 0, 0)
-                    camera.position.set(-435, 65, 0)
+                    gsap.to(camera.position, { x: -435, y: 65, z: 0, duration: 1, ease: "circ.in" })
                 }
                 if (e.object.name == "Plane001") {
                     setLookAt(0, 2, 0)
