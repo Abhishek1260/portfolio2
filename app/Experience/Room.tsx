@@ -13,6 +13,7 @@ import { useStore } from "../store/store"
 import gsap from 'gsap'
 import { SceneFive } from "./SceneFive"
 import { AboutMe } from "./AboutMe"
+import { Steam } from "./Steam"
 
 
 export const Room = () => {
@@ -62,6 +63,7 @@ export const Room = () => {
         const normalX = (e.clientX / window.innerWidth - 0.5) * 2
         const normalY = -1 * (e.clientY / window.innerHeight - 0.5) * 2
         sphere.theta = normalX * Math.PI / 8 + 3 * Math.PI / 4
+        // sphere.theta = normalX + 3 * Math.PI / 4
         sphere.radius = normalY * 3 + radius
         const position = new THREE.Vector3().setFromSpherical(sphere)
         camera.position.set(position.x, position.y, position.z)
@@ -167,6 +169,9 @@ export const Room = () => {
             </Suspense>
             <Suspense>
                 <SceneFive time={time} />
+            </Suspense>
+            <Suspense>
+                <Steam />
             </Suspense>
         </group>
 
