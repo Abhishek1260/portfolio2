@@ -14,6 +14,7 @@ import gsap from 'gsap'
 import { SceneFive } from "./SceneFive"
 import { AboutMe } from "./AboutMe"
 import { Steam } from "./Steam"
+import { GoogleLed } from "./GoogleLed"
 
 
 export const Room = () => {
@@ -173,6 +174,9 @@ export const Room = () => {
             </Suspense>
             <Suspense>
                 <Steam />
+            </Suspense>
+            <Suspense>
+                <GoogleLed />
             </Suspense>
         </group>
 
