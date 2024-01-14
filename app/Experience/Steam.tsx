@@ -7,20 +7,6 @@ export const Steam = () => {
 
     const { scene } = useGLTF("/steam.glb")
 
-    const { x, y } = useControls({
-        x: {
-            value: 0,
-            min: 0,
-            max: 30,
-            step: 0.001,
-        },
-        y: {
-            value: 0,
-            min: 0,
-            max: 30,
-            step: 0.001,
-        }
-    })
 
     scene.traverse((e) => {
 
