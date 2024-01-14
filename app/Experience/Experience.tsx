@@ -1,12 +1,10 @@
 "use client"
 
-import { Canvas, useLoader } from "@react-three/fiber"
+import { Canvas } from "@react-three/fiber"
 import { Room } from "./Room"
 import { Suspense } from "react"
 import { useStore } from "../store/store"
-import { div } from "three/examples/jsm/nodes/Nodes.js"
 import { closeSVG } from "../constants/icons"
-import { AboutMe } from "./AboutMe"
 import { Html, useProgress } from "@react-three/drei"
 
 export const Experience = () => {
@@ -51,9 +49,12 @@ export const Loader = () => {
     return <>
 
         <Html center>
-            {
-                progress
-            } % loaded
+            <div className=" w-screen h-screen bg-slate-900 flex flex-col justify-center items-center gap-10" >
+                <div className="text-6xl text-white">
+                    Loading An Experience For You
+                </div>
+                <div className="w-full h-1 bg-white" style={{ transform: `scale(${progress / 100} , 1)`, transition: "all 0.5" }} />
+            </div>
         </Html>
 
     </>
