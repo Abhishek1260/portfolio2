@@ -20,7 +20,7 @@ export const Experience = () => {
                 <Room />
             </Suspense>
 
-            <AboutMe />
+       
 
         </Canvas>
 

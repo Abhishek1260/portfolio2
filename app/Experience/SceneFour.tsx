@@ -15,7 +15,7 @@ interface Pos {
     z: number
 }
 
-export const SceneFour = ({ time }: { time: string }) => {
+export const SceneFour = ({ time, sphere }: { time: string, sphere: THREE.Spherical }) => {
 
     const { camera } = useThree()
     const { scene } = useGLTF("/texture4.glb")
@@ -42,7 +42,7 @@ export const SceneFour = ({ time }: { time: string }) => {
 
     const htmlRef = useRef<HTMLDivElement>(null)
 
-    const { setLookAt, toggleZoom, zoomed, setCameraPos, setDomain } = useStore((state: any) => ({ setDomain: state.setDomain, setLookAt: state.setLookAt, toggleZoom: state.toggleZoom, zoomed: state.zoomed, setCameraPos: state.setCameraPos }))
+    const { setLookAt, toggleZoom, zoomed, setCameraPos, setDomain, setRemoveMouseDown } = useStore((state: any) => ({ setDomain: state.setDomain, setLookAt: state.setLookAt, toggleZoom: state.toggleZoom, zoomed: state.zoomed, setCameraPos: state.setCameraPos, setRemoveMouseDown: state.setRemoveMouseDown }))
 
 
     return <>

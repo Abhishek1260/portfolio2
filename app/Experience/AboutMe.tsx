@@ -6,13 +6,13 @@ import * as THREE from 'three'
 import { AboutMe1 } from "./AboutMe1"
 import { AboutMe2 } from "./AboutMe2"
 
-export const AboutMe = () => {
+export const AboutMe = ({ callback }: { callback: () => void }) => {
 
 
     return <>
 
-        <AboutMe1 />
-        <AboutMe2 />
+        <AboutMe1 callback={callback} />
+        <AboutMe2 callback={callback} />
 
 
     </>

@@ -4,11 +4,11 @@ import gsap from 'gsap'
 import { useStore } from "../store/store"
 import * as THREE from 'three'
 
-export const AboutMe2 = () => {
+export const AboutMe2 = ({ callback }: { callback: () => void }) => {
     const { scene } = useGLTF("/AboutMe2.glb")
 
     const { camera } = useThree()
-    const { cameraPos, setLookAt } = useStore((state: any) => ({ cameraPos: state.cameraPos, setLookAt: state.setLookAt }))
+    const { cameraPos, setLookAt, setRemoveMouseDown } = useStore((state: any) => ({ cameraPos: state.cameraPos, setLookAt: state.setLookAt, setRemoveMouseDown: state.setRemoveMouseDown }))
     const colorMap = useLoader(THREE.TextureLoader, `/AboutMeTexture.jpg`)
     colorMap.encoding = THREE.sRGBEncoding
     colorMap.flipY = false
@@ -32,6 +32,7 @@ export const AboutMe2 = () => {
                     setLookAt(-300, 0, 0)
                 }
                 if (e.object.name == "Plane003") {
+                    setRemoveMouseDown(false)
                     setLookAt(0, 2, 0)
                     gsap.to(camera.position, { x: cameraPos.x, y: cameraPos.y, z: cameraPos.z, duration: 1, ease: "circ.in" })
                 }
