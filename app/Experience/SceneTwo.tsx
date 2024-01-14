@@ -1,7 +1,7 @@
 "use client"
 
 import { useGLTF } from "@react-three/drei"
-import { useLoader, useThree } from "@react-three/fiber"
+import { useFrame, useLoader, useThree } from "@react-three/fiber"
 import gsap from 'gsap'
 import { TextureLoader } from 'three'
 import * as THREE from 'three'
@@ -30,12 +30,8 @@ export const SceneTwo = ({ time }: { time: string }) => {
     scene.traverse((e) => {
         if (e instanceof THREE.Mesh) {
             e.material = new THREE.MeshBasicMaterial({ map: colorMap })
-            if (e.name === "Cube947") {
-
-            }
         }
     })
-
     const { setLookAt, toggleZoom, zoomed, setCameraPos, setDomain } = useStore((state: any) => ({ setDomain: state.setDomain, setLookAt: state.setLookAt, toggleZoom: state.toggleZoom, zoomed: state.zoomed, setCameraPos: state.setCameraPos }))
 
 

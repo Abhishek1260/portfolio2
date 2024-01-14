@@ -33,7 +33,7 @@ export default function Page() {
     if (ref.current.muted) {
       setMuted(false)
       ref.current.muted = false
-      ref.current.volume = 0.3
+      ref.current.volume = 0.1
     }
   }, [click])
 
@@ -45,7 +45,7 @@ export default function Page() {
     if (ref.current.muted) {
       setMuted(false)
       ref.current.muted = false
-      ref.current.volume = 0.3
+      ref.current.volume = 0.1
     } else {
       setMuted(true)
       ref.current.muted = true
