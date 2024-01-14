@@ -3,33 +3,16 @@ import { useLoader, useThree } from "@react-three/fiber"
 import gsap from 'gsap'
 import { useStore } from "../store/store"
 import * as THREE from 'three'
+import { AboutMe1 } from "./AboutMe1"
+import { AboutMe2 } from "./AboutMe2"
 
 export const AboutMe = () => {
-    const { scene } = useGLTF("/AboutMe1.glb")
-
-    const { camera } = useThree()
-    const { cameraPos, setLookAt } = useStore((state: any) => ({ cameraPos: state.cameraPos, setLookAt: state.setLookAt }))
-    const colorMap = useLoader(THREE.TextureLoader, `/AboutMeTexture.jpg`)
-    colorMap.encoding = THREE.sRGBEncoding
-    colorMap.flipY = false
-
-
-
-    scene.traverse((e) => {
-        if (e instanceof THREE.Mesh) {
-            e.material = new THREE.MeshBasicMaterial({ map: colorMap })
-        }
-    })
 
 
     return <>
 
-        <group position={[-300, 0, 0]} rotation={[0, -Math.PI / 2, 0]}>
-
-            <primitive object={scene} />
-        </group>
-
-
+        <AboutMe1 />
+        <AboutMe2 />
 
 
     </>
