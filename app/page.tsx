@@ -31,9 +31,10 @@ export default function Page() {
     }
     console.log(ref.current.muted)
     if (ref.current.muted) {
+      ref.current.play()
       setMuted(false)
       ref.current.muted = false
-      ref.current.volume = 0.1
+      ref.current.volume = 0.4
     }
   }, [click])
 
@@ -44,8 +45,9 @@ export default function Page() {
     console.log(ref.current.muted)
     if (ref.current.muted) {
       setMuted(false)
+      ref.current.play()
       ref.current.muted = false
-      ref.current.volume = 0.1
+      ref.current.volume = 0.4
     } else {
       setMuted(true)
       ref.current.muted = true
