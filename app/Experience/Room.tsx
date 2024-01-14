@@ -63,7 +63,6 @@ export const Room = () => {
         const normalX = (e.clientX / window.innerWidth - 0.5) * 2
         const normalY = -1 * (e.clientY / window.innerHeight - 0.5) * 2
         sphere.theta = normalX * Math.PI / 8 + 3 * Math.PI / 4
-        // sphere.theta = normalX + 3 * Math.PI / 4
         sphere.radius = normalY * 3 + radius
         const position = new THREE.Vector3().setFromSpherical(sphere)
         camera.position.set(position.x, position.y, position.z)
@@ -101,6 +100,8 @@ export const Room = () => {
     }
 
     const touchStart = () => {
+        setClick()
+
         window.removeEventListener("mousemove", mouseMoveGenericFunction)
         window.addEventListener("touchmove", touchMove)
         window.addEventListener("touchcancel", touchEnd)
