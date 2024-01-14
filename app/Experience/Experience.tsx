@@ -49,8 +49,8 @@ export const Loader = () => {
     return <>
 
         <Html center>
-            <div className=" w-screen h-screen bg-slate-900 flex flex-col justify-center items-center gap-10" >
-                <div className="text-6xl text-white">
+            <div className="w-screen h-screen bg-slate-900 flex flex-col justify-center items-center gap-10" >
+                <div className="text-xl md:text-6xl text-white">
                     Loading An Experience For You
                 </div>
                 <div className="w-full h-1 bg-white" style={{ transform: `scale(${progress / 100} , 1)`, transition: "all 0.5" }} />
