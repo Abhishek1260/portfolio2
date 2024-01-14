@@ -49,9 +49,6 @@ export const SceneFour = ({ time }: { time: string }) => {
 
         <primitive object={scene} onClick={(e: any) => {
             if (e.object.name === "Plane011") {
-                if (zoomed) {
-                    return
-                }
                 setDomain("contact")
                 setCameraPos(camera.position.x, camera.position.y, camera.position.z)
                 setLookAt(e.object.position.x, e.object.position.y, e.object.position.z)
@@ -59,8 +56,8 @@ export const SceneFour = ({ time }: { time: string }) => {
             }
             if (e.object.name === "Plane") {
                 setCameraPos(camera.position.x, camera.position.y, camera.position.z)
-                setLookAt(-100, 5, 0)
-                gsap.to(camera.position, { x: -40, y: 5, z: 0, duration: 1, ease: "circ.in" })
+                setLookAt(-300, 0, 0)
+                gsap.to(camera.position, { x: -300, y: 65, z: 0, duration: 1, ease: "circ.in" })
             }
         }} />
 
