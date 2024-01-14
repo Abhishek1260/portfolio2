@@ -129,6 +129,7 @@ export const Room = () => {
             sphere.radius = 50
             setRadius(50)
         }
+        setTime("Night")
         const position = new THREE.Vector3().setFromSpherical(sphere)
         camera.position.set(position.x, position.y, position.z)
         setCameraPos(position.x, position.y, position.z)
