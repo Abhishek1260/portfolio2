@@ -1,11 +1,12 @@
 "use client"
 
-import { Canvas } from "@react-three/fiber"
+import { Canvas, useFrame } from "@react-three/fiber"
 import { Room } from "./Room"
-import { Suspense } from "react"
+import { Suspense, useState } from "react"
 import { useStore } from "../store/store"
 import { closeSVG } from "../constants/icons"
-import { Html, useProgress } from "@react-three/drei"
+import * as THREE from 'three'
+import { Stars } from "@react-three/drei"
 
 export const Experience = () => {
 
@@ -44,11 +45,25 @@ export const Experience = () => {
 
 export const Loader = () => {
 
-    const { progress } = useProgress()
+    const [sphere, setSphere] = useState(new THREE.Spherical(1100, - Math.PI / 2, 0))
+
+    useFrame(({ camera }) => {
+        sphere.theta += 0.001
+        const position = new THREE.Vector3().setFromSpherical(sphere)
+        camera.position.set(position.x, position.y, position.z)
+        camera.lookAt(0, 0, 0)
+    })
 
     return <>
 
-        <Html center>
+        <Stars />
+
+    </>
+
+
+
+
+    {/* <Html center>
             <div className="w-screen h-screen bg-slate-900 flex flex-col justify-center items-center gap-10" >
                 <div className="flex flex-col gap-2 justify-center items-center">
                     <div className="text-xl md:text-6xl text-white">
@@ -60,7 +75,6 @@ export const Loader = () => {
                 </div>
                 <div className="w-full h-1 bg-white" style={{ transform: `scale(${progress / 100} , 1)`, transition: "all 0.5" }} />
             </div>
-        </Html>
+        </Html> */}
 
-    </>
 }
