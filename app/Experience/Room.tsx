@@ -22,7 +22,9 @@ export const Room = () => {
     const [sphere, setShpere] = useState(new THREE.Spherical(40, - Math.PI / 3, 3 * Math.PI / 4))
     const [radius, setRadius] = useState(40)
 
-    const [time, setTime] = useState("White")
+    const [time1, setTime1] = useState("White")
+    const [time2, setTime2] = useState("Day")
+    const [factor, setFactor] = useState(0)
 
     const { camera } = useThree()
 
@@ -121,11 +123,21 @@ export const Room = () => {
         const date = new Date()
         const hour = date.getHours()
         if (hour >= 6 && hour < 14) {
-            setTime("White")
+            setTime1("White")
+            setTime2("Day")
+            setFactor((hour - 6) / 8)
         } else if (hour >= 14 && hour < 22) {
-            setTime("Day")
+            setTime1("Day")
+            setTime2("Night")
+            setFactor((hour - 14) / 8)
         } else {
-            setTime("Night")
+            setTime1("Night")
+            setTime2("White")
+            if (hour < 6) {
+                setFactor((hour + 2) / 8)
+            } else {
+                setFactor((hour - 22) / 8)
+            }
         }
         if (window.innerWidth < 720) {
             sphere.radius = 50
@@ -151,26 +163,26 @@ export const Room = () => {
 
     return <>
         {
-            time == "Night" ? <Float>
+            time1 == "Night" ? <Float>
                 <Stars />
             </Float> : <Sky />
         }
         <AboutMe callback={mouseDownHandler} />
         <group ref={meshRef}>
             <Suspense>
-                <SceneOne time={time} />
+                <SceneOne time={time1} />
             </Suspense>
             <Suspense>
-                <SceneFour time={time} sphere={sphere} />
+                <SceneFour time={time1} sphere={sphere} />
             </Suspense>
             <Suspense>
-                <SceneTwo time={time} />
+                <SceneTwo time={time1} />
             </Suspense>
             <Suspense>
-                <SceneThree time={time} />
+                <SceneThree time={time1} />
             </Suspense>
             <Suspense>
-                <SceneFive time={time} />
+                <SceneFive time={time1} />
             </Suspense>
             <Suspense>
                 <Steam />
