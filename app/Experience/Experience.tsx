@@ -6,7 +6,8 @@ import { Suspense, useState } from "react"
 import { useStore } from "../store/store"
 import { closeSVG } from "../constants/icons"
 import * as THREE from 'three'
-import { Stars } from "@react-three/drei"
+import { Stars, Text } from "@react-three/drei"
+import { Html } from "@react-three/drei"
 
 export const Experience = () => {
 
@@ -16,8 +17,9 @@ export const Experience = () => {
 
         <Canvas camera={{ fov: 30 }} >
 
-            <Suspense fallback={<Loader />} >
-                <Room />
+            <Suspense fallback={<></>} >
+                {/* <Room /> */}
+                <Loader />
             </Suspense>
 
 
@@ -56,7 +58,12 @@ export const Loader = () => {
 
     return <>
 
-        <Stars />
+        <Stars count={10000} />
+        <Html center>
+            <div className="text-gray-300 w-max text-xl md:text-6xl">
+                Loading An Experience For You
+            </div>
+        </Html>
 
     </>
 
