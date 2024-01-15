@@ -17,9 +17,9 @@ export const Experience = () => {
 
         <Canvas camera={{ fov: 30 }} >
 
-            <Suspense fallback={<></>} >
-                {/* <Room /> */}
-                <Loader />
+            <Suspense fallback={<>    <Loader /></>} >
+                <Room />
+
             </Suspense>
 
 
